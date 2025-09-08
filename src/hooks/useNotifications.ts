@@ -17,7 +17,7 @@ export const useNotifications = () => {
     if (!session) return;
 
     try {
-      const response = await fetch('${API_URL}/api/notifications', {
+      const response = await fetch(`${API_URL}/api/notifications`, {
         headers: {
           'Authorization': `Bearer ${session.access_token}`,
         },

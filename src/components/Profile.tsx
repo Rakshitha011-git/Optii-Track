@@ -28,7 +28,7 @@ const Profile: React.FC = () => {
     if (!session) return;
 
     try {
-      const response = await fetch('${API_URL}/api/users/profile', {
+      const response = await fetch(`${API_URL}/api/users/profile`, {
         headers: {
           'Authorization': `Bearer ${session.access_token}`,
         },
@@ -56,7 +56,7 @@ const Profile: React.FC = () => {
     setSaving(true);
 
     try {
-      const response = await fetch('${API_URL}/api/users/profile', {
+      const response = await fetch(`${API_URL}/api/users/profile`, {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${session.access_token}`,

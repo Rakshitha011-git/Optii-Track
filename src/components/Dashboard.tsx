@@ -31,7 +31,7 @@ const Dashboard: React.FC = () => {
 
     try {
       // Fetch medication schedules
-      const scheduleResponse = await fetch('${API_URL}/api/schedules', {
+      const scheduleResponse = await fetch(`${API_URL}/api/schedules`, {
         headers: {
           'Authorization': `Bearer ${session.access_token}`,
         },
@@ -43,7 +43,7 @@ const Dashboard: React.FC = () => {
       }
 
       // Fetch next appointment
-      const appointmentResponse = await fetch('${API_URL}/api/appointments', {
+      const appointmentResponse = await fetch(`${API_URL}/api/appointments`, {
         headers: {
           'Authorization': `Bearer ${session.access_token}`,
         },

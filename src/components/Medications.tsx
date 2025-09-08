@@ -32,7 +32,7 @@ const Medications: React.FC = () => {
     if (!session) return;
 
     try {
-      const response = await fetch('${API_URL}/api/schedules', {
+      const response = await fetch(`${API_URL}/api/schedules`, {
         headers: {
           'Authorization': `Bearer ${session.access_token}`,
         },
@@ -58,7 +58,7 @@ const Medications: React.FC = () => {
     try {
       const url = editingId 
         ? `${API_URL}/api/schedules/${editingId}`
-        : '${API_URL}/api/schedules';
+        : `${API_URL}/api/schedules`;
       
       const method = editingId ? 'PUT' : 'POST';
 
