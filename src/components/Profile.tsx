@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { User, Save, Phone, Mail } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
+import { API_URL } from '../apiConfig'; // Adjust the path if necessary
 
 interface UserProfile {
   id: string;
@@ -27,7 +28,7 @@ const Profile: React.FC = () => {
     if (!session) return;
 
     try {
-      const response = await fetch('http://localhost:3001/api/users/profile', {
+      const response = await fetch('${API_URL}/api/users/profile', {
         headers: {
           'Authorization': `Bearer ${session.access_token}`,
         },
@@ -55,7 +56,7 @@ const Profile: React.FC = () => {
     setSaving(true);
 
     try {
-      const response = await fetch('http://localhost:3001/api/users/profile', {
+      const response = await fetch('${API_URL}/api/users/profile', {
         method: 'PUT',
         headers: {
           'Authorization': `Bearer ${session.access_token}`,

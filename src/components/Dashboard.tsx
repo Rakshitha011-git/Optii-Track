@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, Pill, Plus, Clock } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
+import { API_URL } from '../apiConfig'; // Adjust the path if necessary
 
 interface Schedule {
   schedule_id: number;
@@ -30,7 +31,7 @@ const Dashboard: React.FC = () => {
 
     try {
       // Fetch medication schedules
-      const scheduleResponse = await fetch('http://localhost:3001/api/schedules', {
+      const scheduleResponse = await fetch('${API_URL}/api/schedules', {
         headers: {
           'Authorization': `Bearer ${session.access_token}`,
         },
@@ -42,7 +43,7 @@ const Dashboard: React.FC = () => {
       }
 
       // Fetch next appointment
-      const appointmentResponse = await fetch('http://localhost:3001/api/appointments', {
+      const appointmentResponse = await fetch('${API_URL}/api/appointments', {
         headers: {
           'Authorization': `Bearer ${session.access_token}`,
         },

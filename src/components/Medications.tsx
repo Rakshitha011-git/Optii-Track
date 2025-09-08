@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Pill, Plus, Edit2, Trash2, Save, X, Clock } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
+import { API_URL } from '../apiConfig'; // Adjust the path if necessary
 
 interface Schedule {
   schedule_id: number;
@@ -31,7 +32,7 @@ const Medications: React.FC = () => {
     if (!session) return;
 
     try {
-      const response = await fetch('http://localhost:3001/api/schedules', {
+      const response = await fetch('${API_URL}/api/schedules', {
         headers: {
           'Authorization': `Bearer ${session.access_token}`,
         },
@@ -56,8 +57,8 @@ const Medications: React.FC = () => {
     
     try {
       const url = editingId 
-        ? `http://localhost:3001/api/schedules/${editingId}`
-        : 'http://localhost:3001/api/schedules';
+        ? `${API_URL}/api/schedules/${editingId}`
+        : '${API_URL}/api/schedules';
       
       const method = editingId ? 'PUT' : 'POST';
 
@@ -97,7 +98,7 @@ const Medications: React.FC = () => {
     if (!session || !confirm('Are you sure you want to delete this medication schedule?')) return;
 
     try {
-      const response = await fetch(`http://localhost:3001/api/schedules/${id}`, {
+      const response = await fetch(`${API_URL}/api/schedules/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${session.access_token}`,

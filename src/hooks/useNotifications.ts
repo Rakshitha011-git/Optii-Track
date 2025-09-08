@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from './useAuth';
+import { API_URL } from '../apiConfig'; // Adjust the path if necessary
 
 export interface Notification {
   type: 'medication' | 'appointment';
@@ -16,7 +17,7 @@ export const useNotifications = () => {
     if (!session) return;
 
     try {
-      const response = await fetch('http://localhost:3001/api/notifications', {
+      const response = await fetch('${API_URL}/api/notifications', {
         headers: {
           'Authorization': `Bearer ${session.access_token}`,
         },

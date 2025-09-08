@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Calendar, Plus, Edit2, Trash2, Save, X } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
+import { API_URL } from '../apiConfig'; // Adjust the path if necessary
 
 // Note: Framer Motion would be needed for more advanced animations,
 // but for now, we'll use CSS transitions for smooth effects.
@@ -32,7 +33,7 @@ const Appointments: React.FC = () => {
     if (!session) return;
 
     try {
-      const response = await fetch('http://localhost:3001/api/appointments', {
+      const response = await fetch(`${API_URL}/api/appointments`, {
         headers: {
           'Authorization': `Bearer ${session.access_token}`,
         },
@@ -55,8 +56,8 @@ const Appointments: React.FC = () => {
 
     try {
       const url = editingId 
-        ? `http://localhost:3001/api/appointments/${editingId}`
-        : 'http://localhost:3001/api/appointments';
+  ? `${API_URL}/api/appointments/${editingId}`
+  : `${API_URL}/api/appointments`;
       
       const method = editingId ? 'PUT' : 'POST';
 
@@ -94,7 +95,7 @@ const Appointments: React.FC = () => {
     if (!session || !confirm('Are you sure you want to delete this appointment?')) return;
 
     try {
-      const response = await fetch(`http://localhost:3001/api/appointments/${id}`, {
+      const response = await fetch(`${API_URL}/api/appointments/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${session.access_token}`,
